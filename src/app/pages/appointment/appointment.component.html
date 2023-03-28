@@ -1,0 +1,104 @@
+<mat-card>
+  <mat-card-content>
+    <mat-grid-list cols="6" rowHeight="2:1">
+      <form (ngSubmit)="onSubmit()" [formGroup]="dateTimeForm">
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div>
+            <h3 style="margin: 0">Start:</h3>
+            <h5 style="margin: 0">*Required</h5>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>Date start</mat-label>
+            <input
+              matInput
+              [matDatepicker]="startDate"
+              formControlName="startDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="startDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #startDate></mat-datepicker>
+            <!-- <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div>
+            <h3 style="margin: 0">at</h3>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>Start time</mat-label>
+            <mat-select
+              (selectionChange)="selectionChanged()"
+              formControlName="startTime"
+            >
+              <mat-option *ngFor="let time of times" [value]="time.value">
+                {{ time.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div>
+            <h3 style="margin: 0">End:</h3>
+            <h5 style="margin: 0">*Required</h5>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>Date end</mat-label>
+            <input
+              matInput
+              [matDatepicker]="endDate"
+              formControlName="endDate"
+            />
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="endDate"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #endDate></mat-datepicker>
+          </mat-form-field>
+          <mat-error
+            style="position: absolute; bottom: 0"
+            *ngIf="dateTimeForm.errors && dateTimeForm.errors['invalidDate']"
+            >Invalid date</mat-error
+          >
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="1" [rowspan]="1">
+          <div>
+            <h3 style="margin: 0">at</h3>
+          </div>
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="2" [rowspan]="1">
+          <mat-form-field appearance="fill">
+            <mat-label>End time</mat-label>
+            <mat-select formControlName="endTime">
+              <mat-option *ngFor="let time of times" [value]="time.value">
+                {{ time.viewValue }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-error
+            style="position: absolute; bottom: 0"
+            *ngIf="dateTimeForm.errors && dateTimeForm.errors['invalidTime']"
+            >Invalid time</mat-error
+          >
+        </mat-grid-tile>
+        <mat-grid-tile [colspan]="6" [rowspan]="1">
+          <button
+            type="submit"
+            mat-raised-button
+            color="primary"
+            [disabled]="!dateTimeForm.valid"
+          >
+            Submit
+          </button>
+        </mat-grid-tile>
+      </form>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>

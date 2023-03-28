@@ -1,0 +1,13 @@
+<h1 mat-dialog-title style="text-align: center">
+  <img src="https://www.doctoride.com/assets/img/dialog/search.svg" />
+  <p>Result</p>
+</h1>
+<div mat-dialog-content>
+  <p>Start: {{data.startDateTime}}</p>
+  <p>End: {{data.endDateTime}}</p>
+</div>
+<div mat-dialog-actions align="center">
+  <button mat-button mat-stroked-button color="warn" tabindex="-1" (click)="onNoClick()">
+    Close
+  </button>
+</div>
